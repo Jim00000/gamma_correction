@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cmath>
 #include <omp.h>
 #include "gamma_correction.hpp"
@@ -15,9 +16,11 @@ gamma_correction::~gamma_correction()
 
 }
 
+#ifndef USE_CUDA
 void
 gamma_correction::_process(const cv::Mat& src, cv::Mat& dst, const float gamma)
 {
+    std::cout << "OpenMP" << std::endl;
     const float inv_gamma = 1.0f / gamma;
     #pragma omp parallel for collapse(2)
     for(int i = 0; i < src.rows; i++) {
@@ -31,6 +34,7 @@ gamma_correction::_process(const cv::Mat& src, cv::Mat& dst, const float gamma)
         }
     }
 }
+#endif
 
 Mat&
 gamma_correction::result()

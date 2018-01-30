@@ -8,7 +8,8 @@ else ()
 endif ()
 
 if (CUDA_FOUND AND BUILD_WITH_CUDA)
-
+    add_executable (test-gc test.cpp)
+    target_link_libraries (test-gc gamma-correction-culib gamma-correction-lib ${OpenCV_LIBS})
 else ()
     add_executable (test-gc test.cpp)
     target_link_libraries (test-gc gamma-correction-lib ${OpenCV_LIBS})
