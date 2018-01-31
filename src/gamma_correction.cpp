@@ -5,7 +5,7 @@
 
 using namespace cv;
 
-gamma_correction::gamma_correction(const Mat& src, const float gamma)
+gamma_correction::gamma_correction(Mat& src, const float gamma)
 {
     _result = Mat(src.size(), src.type());
     _process(src, _result, gamma);
@@ -20,7 +20,6 @@ gamma_correction::~gamma_correction()
 void
 gamma_correction::_process(const cv::Mat& src, cv::Mat& dst, const float gamma)
 {
-    std::cout << "OpenMP" << std::endl;
     const float inv_gamma = 1.0f / gamma;
     #pragma omp parallel for collapse(2)
     for(int i = 0; i < src.rows; i++) {

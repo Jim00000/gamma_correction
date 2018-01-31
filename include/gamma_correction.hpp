@@ -6,7 +6,7 @@
 class gamma_correction
 {
 public:
-    gamma_correction(const cv::Mat& src, const float gamma = 1.0f);
+    gamma_correction(cv::Mat& src, const float gamma = 1.0f);
     virtual ~gamma_correction();
     cv::Mat& result();
 protected:

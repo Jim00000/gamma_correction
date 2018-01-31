@@ -50,7 +50,6 @@ _process_cuda(const unsigned char* src, unsigned char* dst, const size_t rows, c
 void
 gamma_correction::_process(const cv::Mat& src, cv::Mat& dst, const float gamma)
 {
-    std::cout << "Run with CUDA" << std::endl;
     Mat bgr[3];
     Mat d_bgr[3];
     split(src, bgr);
